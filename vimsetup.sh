@@ -14,6 +14,13 @@ git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle/
 # Added the lines to vimrc to support python integration
 cat vimconf >> ~/.vimrc
 
+# Install Powerline font
+git clone https://github.com/powerline/fonts.git powerlinefont/
+cd powerlinefont/
+./install.sh
+cd ..
+
+# Install bundles
 vim +PluginInstall +qall
 
 # build YCM
@@ -30,12 +37,5 @@ fi
 make ycm_support_libs
 cd ..
 rm -r ycm_build
-
-# Install Powerline font
-git clone https://github.com/powerline/fonts.git powerlinefont/
-cd powerlinefont/
-./install.sh
-cd ..
-rm -r powerlinefont
 
 exit 0
