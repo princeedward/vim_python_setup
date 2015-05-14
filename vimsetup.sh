@@ -9,8 +9,8 @@
 # -c  Compile with llvm to have c family language auto completion support
 
 # Get vundle
-git clone https://github.com/gmarik/vundle.git vundle/
-mv -p vundle/ ~/.vim/bundle/vundle/
+mkdir ~/.vim/bundle/
+git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle/
 # Added the lines to vimrc to support python integration
 cat vimconf >> ~/.vimrc
 
