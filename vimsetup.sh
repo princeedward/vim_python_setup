@@ -10,7 +10,7 @@
 
 # Get vundle
 curl -L https://github.com/gmarik/Vundle.vim/archive/master.zip | tar xz -o vundle
-mv -P vundle/ ~/.vim/bundle/vundle/
+mv -p vundle/ ~/.vim/bundle/vundle/
 # Added the lines to vimrc to support python integration
 cat vimconf >> ~/.vimrc
 
