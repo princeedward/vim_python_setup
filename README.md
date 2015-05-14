@@ -4,12 +4,12 @@ This script is designed for easily seting up the vim python development environm
 
 ## Dependencies
 
-The installation of YouCompleteMe depends on the following libraries/packages: build-essential, cmake, python-dev
+The installation of YouCompleteMe depends on the following libraries/packages: build-essential, cmake, python-dev, curl and git
 
 To install those libraries in ubuntu, simply type
 ```bash
 
-sudo apt-get install build-essential cmake python-dev
+sudo apt-get install build-essential curl cmake python-dev git
 ```
 Or in a redhat system
 ```bash
