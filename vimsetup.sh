@@ -29,5 +29,13 @@ else
 fi
 make ycm_support_libs
 cd ..
+rm -r ycm_build
+
+# Install Powerline font
+git clone https://github.com/powerline/fonts.git powerlinefont/
+cd powerlinefont/
+./install.sh
+cd ..
+rm -r powerlinefont
 
 exit 0
