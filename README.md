@@ -14,7 +14,7 @@ sudo apt-get install build-essential curl cmake python-dev git
 Or in a redhat system
 ```bash
 
-sudo yum install make automake gcc gcc-c++ kernel-devel cmake python-devel
+sudo yum install make automake gcc gcc-c++ kernel-devel cmake python-devel curl git
 ```
 And then to make sure your have a vim with a version number greater than 7.3, and with python supported.
 
