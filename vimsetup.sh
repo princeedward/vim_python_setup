@@ -19,6 +19,7 @@ git clone https://github.com/powerline/fonts.git powerlinefont/
 cd powerlinefont/
 ./install.sh
 cd ..
+rm -rf powerlinefont
 
 # Install bundles
 vim +PluginInstall +qall
