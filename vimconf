@@ -83,10 +83,15 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " Don't autofold code
 let g:pymode_folding = 0
 
-" I'm prefer spaces to tabs
-set tabstop=2
-set shiftwidth=2
+" Set the pymode max line length
+let g:pymode_options_max_line_length = 120 
+
+" This chunk set up the tabs in the editor
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
+set autoindent
 
 " Enable ine numbers
 set number
@@ -94,4 +99,114 @@ set number
 " YouCompleteMe autocompletion
 Bundle 'Valloric/YouCompleteMe'
 
+" vim flake 8
+Bundle 'nvie/vim-flake8'
 
+" YCM extra setup for compilation commands database
+let g:ycm_confirm_extra_conf = 0
+
+" Set astylerc for c++ formatting
+set equalprg=astyle
+
+" emap F1 to switch between header and source file
+nmap <F1> :if expand('%:e')=='hh'<CR>e %:r.cc<CR>else<CR>e %:r.hh<CR>endif<CR><CR>
+
+" Nerd commentor
+Bundle 'scrooloose/nerdcommenter'
+
+" Ctrlp
+Bundle 'kien/ctrlp.vim'
+
+"search files and buffers
+nmap ; :CtrlPMixed<CR>
+
+set wildignore+=*/bin/*
+set wildignore+=*/lib/*
+set wildignore+=*/build/*
+set wildignore+=*/mnt/*  "Do not index /mnt/
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_map = '<Leader>t'
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_reversed = 0
+let g:ctrlp_custom_ignore = '\v\~$|\.(o|swp|pyc|wav|mp3|ogg|blend|so)$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|__init__\.py|CMakeFiles|CMakeCache\.txt$|cmake_install\.cmake$'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_dotfiles = 0
+let g:ctrlp_switch_buffer = 0
+
+"ctrlp function for closing buffers using ctrl+@
+let g:ctrlp_buffer_func = { 'enter': 'CtrlPMappings' }
+
+function! CtrlPMappings()
+  nnoremap <buffer> <silent> <C-@> :call <sid>DeleteBuffer()<cr>
+endfunction
+
+function! s:DeleteBuffer()
+  let path = fnamemodify(getline('.')[2:], ':p')
+  let bufn = matchstr(path, '\v\d+\ze\*No Name')
+  exec "bd" bufn ==# "" ? path : bufn
+  exec "norm \<F5>"
+endfunction
+
+" Set syntax high-lighting
+augroup av
+    autocmd!
+    autocmd BufRead,BufNewFile *.hh,*.cc,*.hidl set filetype=cpp
+    autocmd FileType cpp set colorcolumn=120
+    autocmd FileType cpp highlight ColorColumn ctermbg=darkgray
+    autocmd FileType cpp set nowrap
+augroup END
+
+
+" Set up vim doxygen toolkit
+Bundle 'vim-scripts/DoxygenToolkit.vim'
+
+let g:DoxygenToolkit_commentType = "C++"
+let g:DoxygenToolkit_paramTag_pre="@param " 
+let g:DoxygenToolkit_templateParamTag_pre = "@tparam "
+let g:DoxygenToolkit_returnTag="@return " 
+let g:load_doxygen_syntax = 1
+
+" Setup vim-clang-format
+Bundle 'rhysd/vim-clang-format'
+
+let g:clang_format#detect_style_file = 1
+let g:clang_format#auto_format = 1
+let g:clang_format#auto_format_on_insert_leave = 0
+let g:clang_format#auto_formatexpr = 1
+
+autocmd FileType c,cpp nnoremap <buffer><Leader>f :<C-u>ClangFormat<CR>         
+autocmd FileType c,cpp vnoremap <buffer><Leader>f :ClangFormat<CR>              
+
+" Setup enhanced cpp syntax
+Bundle 'octol/vim-cpp-enhanced-highlight'
+
+let g:cpp_class_scope_highlight = 1
+
+" Setup spell check shortcup
+nmap <s-p> :setlocal spell! spelllang=en_us<CR>
+
+" Shortcut for copy and paste to from clipboard
+nnoremap <C-y> "+y
+vnoremap <C-y> "+y
+nnoremap <C-p> "+gP
+vnoremap <C-p> "+gP
+
+" Easymotion
+Plugin 'easymotion/vim-easymotion'
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key
+" binding.
+" `s{char}{label}`
+" nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
