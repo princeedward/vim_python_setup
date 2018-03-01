@@ -210,3 +210,19 @@ let g:EasyMotion_smartcase = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+
+" Set up tag related stuffs
+set tags=./tags;
+
+" Shortcut for converting variables from snake case to camel case 
+nnoremap + :s#\(\%(\<\l\+\)\%(_\)\@=\)\\|_\(\l\)#\u\1\2#g<CR>
+vnoremap + :s#\(\%(\<\l\+\)\%(_\)\@=\)\\|_\(\l\)#\u\1\2#g<CR>
+
+" Set up tagbar
+Plugin 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+
+" Setup CtrlPJump
+Plugin 'ivalkeen/vim-ctrlp-tjump'
+nnoremap <c-]> :CtrlPtjump<cr>
+vnoremap <c-]> :CtrlPtjumpVisual<cr>
